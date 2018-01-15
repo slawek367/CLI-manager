@@ -12,9 +12,15 @@ namespace Dir
             new Dictionary<string, Action<string[]>>()
             {
                 { "help", HelpFunc },
+                { "cd", Cd },
             };
 
         public static void HelpFunc(string[] args)
+        {
+            Console.WriteLine("xD");
+        }
+
+        public static void Cd(string[] args)
         {
             Console.WriteLine("xD");
         }
