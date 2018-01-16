@@ -28,7 +28,7 @@ namespace Dir
 
             if (Command.Exists(command))
             {
-                Console.WriteLine("Good command");
+                Command.commandList[command](arguments);
             }
             else if (command == "")
             {

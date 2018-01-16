@@ -8,11 +8,12 @@ namespace Dir
 {
     static class Command
     {
-        private static Dictionary<string, Action<string[]>> commandList =
+        public static Dictionary<string, Action<string[]>> commandList =
             new Dictionary<string, Action<string[]>>()
             {
                 { "help", HelpFunc },
                 { "cd", Cd },
+                { "ls", Ls },
             };
 
         public static void HelpFunc(string[] args)
@@ -22,7 +23,12 @@ namespace Dir
 
         public static void Cd(string[] args)
         {
-            Console.WriteLine("xD");
+            Dir.Commands.Cd.GetParameters(args);
+        }
+
+        public static void Ls(string[] args)
+        {
+            Dir.Commands.Ls.GetParameters(args);
         }
 
         public static bool Exists(string command)
