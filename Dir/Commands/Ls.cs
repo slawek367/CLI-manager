@@ -15,16 +15,9 @@ namespace Dir.Commands
             {
                 ListFiles();
             }
-            else if (args[0] == "..")
+            else
             {
-                try
-                {
-                    System.IO.Directory.SetCurrentDirectory(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString());
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Can't do this!");
-                }
+                Console.WriteLine("This is ls command, just write ls to list folders and directories");
             }
         }
 
@@ -41,11 +34,12 @@ namespace Dir.Commands
                 Console.WriteLine(item);
             }
 
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Magenta;
             foreach (var item in files)
             {
                 Console.WriteLine(item);
             }
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

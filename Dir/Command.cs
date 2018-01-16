@@ -18,7 +18,11 @@ namespace Dir
 
         public static void HelpFunc(string[] args)
         {
-            Console.WriteLine("xD");
+            Console.WriteLine("This is a Dir c# console!");
+            Console.WriteLine();
+            Console.WriteLine("Added commands which you could use:");
+            Console.WriteLine("- cd help");
+            Console.WriteLine("- ls help");
         }
 
         public static void Cd(string[] args)

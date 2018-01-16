@@ -36,7 +36,7 @@ namespace Dir.Commands
                     Console.WriteLine("No such folder: " + args[0].Replace('/', '\\'));
                 }
             }
-            else if (args[0].Length>0)
+            else if (args[0].Length>0 && args[0] != "help")
             {
                 try
                 {
@@ -49,7 +49,10 @@ namespace Dir.Commands
             }
             else
             {
-                Console.WriteLine("Can't understand " + args[0] + " parameter!");
+                if (args[0] != "help")
+                {
+                    Console.WriteLine("Can't understand " + args[0] + " parameter!");
+                }
                 Help();
             }
         }
