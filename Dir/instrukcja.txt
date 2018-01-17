@@ -1,0 +1,9 @@
+Program mozna uruchomic z parametrem lub bez.
+W przypadku uruchamiania z parametrem mozna zmienic kolor konsoli np.
+
+Dir.exe blue
+Dir.exe black
+Dir.exe yellow
+Dir.exe cyan
+
+Bez parametru program uruchomi sie w standardowej czarnej konsoli.
