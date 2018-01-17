@@ -10,9 +10,18 @@ namespace Dir
     {
 
 
-        public static void Configure()
+        public static void Configure(string color)
         {
 
+            switch (color)
+            {
+                case "blue": Console.BackgroundColor = ConsoleColor.Blue; break;
+                case "black": Console.BackgroundColor = ConsoleColor.Black; break;
+                case "yellow": Console.BackgroundColor = ConsoleColor.Yellow; break;
+                case "cyan": Console.BackgroundColor = ConsoleColor.Cyan; break;
+                default: break;
+            }
+            Console.Clear();
         }
 
         public static void Start()

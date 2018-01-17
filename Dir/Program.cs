@@ -10,7 +10,17 @@ namespace Dir
     {
         static void Main(string[] args)
         {
-            ConsoleManager.Start();
+            if (args.Length == 0)
+            {
+                System.Console.WriteLine("No numeric argument get from parameters, console will start with standard color.");
+                ConsoleManager.Start();
+            }
+            else
+            {
+                ConsoleManager.Configure(args[0]);
+                ConsoleManager.Start();
+            }
+            
         }
     }
 }
