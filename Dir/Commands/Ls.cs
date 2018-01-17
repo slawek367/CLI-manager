@@ -18,6 +18,11 @@ namespace Dir.Commands
             }
             else if (args[0] == "-date")
             {
+                if (args.Length == 2 && args[1] == "-desc")
+                {
+                    ListFilesByDate(false);
+                    return;
+                }
                 ListFilesByDate();
             }
             else if (args[0] == "-size")
@@ -29,12 +34,13 @@ namespace Dir.Commands
                 }
                 ListFilesBySize();
             }
-            else if (args[0] == "-size")
-            {
-                ListFilesBySize(false);
-            }
             else if (args[0] == "-name")
             {
+                if (args.Length == 2 && args[1] == "-desc")
+                {
+                    ListFilesByName(false);
+                    return;
+                }
                 ListFilesByName();
             }
             else
@@ -71,9 +77,34 @@ namespace Dir.Commands
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public static void ListFilesByDate()
+        public static void ListFilesByDate(bool asc = true)
         {
+            DirectoryInfo dir = new DirectoryInfo(Directory.GetCurrentDirectory());
+            var directory = dir.EnumerateFileSystemInfos();
 
+            IEnumerable<FileSystemInfo> sortedDirAndFiles;
+            if (asc == true)
+            {
+                sortedDirAndFiles = directory.OrderBy(x => x.CreationTime);
+            }
+            else
+            {
+                sortedDirAndFiles = directory.OrderByDescending(x => x.CreationTime);
+            }
+
+            foreach (var item in sortedDirAndFiles)
+            {
+                if (item.Attributes.HasFlag(FileAttributes.Directory))
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"{item.Name,-20} {item.CreationTime,20}");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine($"{item.Name,-20} {item.CreationTime,20}");
+                }
+            }
         }
 
         public static void ListFilesBySize(bool asc = true)
@@ -110,9 +141,34 @@ namespace Dir.Commands
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public static void ListFilesByName()
+        public static void ListFilesByName(bool asc = true)
         {
+            DirectoryInfo dir = new DirectoryInfo(Directory.GetCurrentDirectory());
+            var directory = dir.EnumerateFileSystemInfos();
 
+            IEnumerable<FileSystemInfo> sortedDirAndFiles;
+            if (asc == true)
+            {
+                sortedDirAndFiles = directory.OrderBy(x => x.Name);
+            }
+            else
+            {
+                sortedDirAndFiles = directory.OrderByDescending(x => x.Name);
+            }
+
+            foreach (var item in sortedDirAndFiles)
+            {
+                if (item.Attributes.HasFlag(FileAttributes.Directory))
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine(item.Name);
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine(item.Name);
+                }
+            }
         }
     }
 }
